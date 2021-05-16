@@ -15,7 +15,6 @@ from PySide2.QtCore import SIGNAL
 from Limbo.style import *
 from Limbo.tools import *
 
-
 class guii(QMainWindow):
     def __init__(gui):
         super().__init__()
@@ -24,20 +23,20 @@ class guii(QMainWindow):
         gui.setBaseSize(500, 200)
         gui.setWindowFlag(Qt.FramelessWindowHint)
         gui.setWindowTitle("Limbo")
-        gui.setWindowIcon(QIcon("media/logo.ico"))
+        gui.setWindowIcon(QIcon(getPath("data/media/logo.ico")))
 
         # strs
         gui.isFull = 0
         gui.typeList = "note"
 
         # prestatusbar
-        gui.statusBarCl = QPushButton(QIcon("media/cansel.ico"), "")
+        gui.statusBarCl = QPushButton(QIcon(getPath("data/media/cansel.ico")), "")
         gui.statusBarCl.setStyleSheet(
             "QPushButton{background-color: '#80FFFFFF';  border: 0px #80FFFFFF;" "border-radius: 10px;}")
 
         # statusbar
         gui.statusBar().showMessage("Загрузка. Ждите")
-        gui.statusBar().setStyleSheet("background-image: url(media/horse.ico);")
+        gui.statusBar().setStyleSheet("background-image: url(" + getPath("data/media/horse.ico") +");")
         gui.statusBar().addPermanentWidget(gui.statusBarCl)
         gui.statusBarCl.clicked.connect(lambda: gui.statusBar().hide())
 
@@ -49,16 +48,16 @@ class guii(QMainWindow):
         gui.fireMenu = gui.topbar.addMenu("&Firebase")
         gui.jsonMenu = gui.topbar.addMenu("&JSON")
         gui.socketMenu = gui.topbar.addMenu("&Sockets")
-        gui.exitA = QAction(QIcon("media/exit.ico"), "&Exit", gui)
-        gui.fullscreen = QAction(QIcon("media/gull.png"), "&FullScreen", gui)
-        gui.terminal = QAction(QIcon("media/terminal.png"), "&Terminal", gui)
-        gui.gitLogin = QAction(QIcon('media/git.ico'), "&Sign In", gui)
-        gui.gitInstall = QAction(QIcon("media/git.ico"), "&Install", gui)
-        gui.fireLogin = QAction(QIcon("media/fire.ico"), "&Sing In", gui)
-        gui.fireUpdate = QAction(QIcon("media/fire.ico"), "&Update", gui)
-        gui.jsonUpdate = QAction(QIcon("media/json.png"), "&Load", gui)
-        gui.jsonEdit = QAction(QIcon("media/json.png"), "&Upload", gui)
-        gui.socketOn = QAction(QIcon("media/send.ico"), "&Off Socket")
+        gui.exitA = QAction(QIcon(getPath("data/media/exit.ico")), "&Exit", gui)
+        gui.fullscreen = QAction(QIcon(getPath("data/media/gull.png")), "&FullScreen", gui)
+        gui.terminal = QAction(QIcon(getPath("data/media/terminal.png")), "&Terminal", gui)
+        gui.gitLogin = QAction(QIcon(getPath('data/media/git.ico')), "&Sign In", gui)
+        gui.gitInstall = QAction(QIcon(getPath("data/media/git.ico")), "&Install", gui)
+        gui.fireLogin = QAction(QIcon(getPath("data/media/fire.ico")), "&Sing In", gui)
+        gui.fireUpdate = QAction(QIcon(getPath("data/media/fire.ico")), "&Update", gui)
+        gui.jsonUpdate = QAction(QIcon(getPath("data/media/json.png")), "&Load", gui)
+        gui.jsonEdit = QAction(QIcon(getPath("data/media/json.png")), "&Upload", gui)
+        gui.socketOn = QAction(QIcon(getPath("data/media/send.ico")), "&Off Socket")
         gui.exitA.setShortcut("Ctrl+Q")
         gui.fullscreen.setShortcut("F11")
         gui.exitA.triggered.connect(QCoreApplication.instance().quit)
@@ -84,7 +83,7 @@ class guii(QMainWindow):
         # toolbar
         gui.log = QLineEdit()
         gui.pas = QLineEdit()
-        gui.go = QAction(QIcon("media/gitLog.ico"), "&Sign in", gui)
+        gui.go = QAction(QIcon(getPath("data/media/gitLog.ico")), "&Sign in", gui)
         gui.toolbar = gui.addToolBar("")
         gui.toolbar.setVisible(False)
         gui.start()
@@ -102,13 +101,13 @@ class guii(QMainWindow):
                         if type == 'note':
                             gui.myQCustomQWidget.setTextUp(neme)
                             gui.myQCustomQWidget.setTextDown(des)
-                            gui.myQCustomQWidget.setIcon("media/edit.ico")
+                            gui.myQCustomQWidget.setIcon(getPath("data/media/edit.ico"))
                             if gui.typeList == 'note':
                                 gui.myQListWidgetItem.setHidden(False)
                         elif type == "code":
                             gui.myQCustomQWidget.setTextUp(neme)
                             gui.myQCustomQWidget.setTextDown(des)
-                            gui.myQCustomQWidget.setIcon("media/code.icon")
+                            gui.myQCustomQWidget.setIcon(getPath("data/media/code.icon.webp"))
                             if gui.typeList == 'code':
                                 gui.myQListWidgetItem.setHidden(False)
 
@@ -141,7 +140,7 @@ class guii(QMainWindow):
             threading.Thread(target=updateList).start()
 
         gui.tab_but = QHBoxLayout()
-        gui.fab = QPushButton(QIcon("media/add.png"), "")
+        gui.fab = QPushButton(QIcon(getPath("data/media/add.png")), "")
         gui.fab.setStyleSheet("background-color: white; border: 1px white;")
         gui.list_block = QVBoxLayout()
         gui.fab_block = QHBoxLayout()
@@ -190,9 +189,9 @@ class guii(QMainWindow):
         buttons = QHBoxLayout()
         login.setPlaceholderText(u'Login/Email')
         password.setPlaceholderText(u'password')
-        ok = QPushButton(QIcon("media/ok.ico"), "Login")
-        cansel = QPushButton(QIcon("media/cansel.ico"), "")
-        logo = QPushButton(QIcon("media/git.ico"), "")
+        ok = QPushButton(QIcon(getPath("data/media/ok.ico")), "Login")
+        cansel = QPushButton(QIcon(getPath("data/media/cansel.ico")), "")
+        logo = QPushButton(QIcon(getPath("data/media/git.ico")), "")
         ok.setFixedWidth(100)
         password.setEchoMode(QLineEdit.Password)
         logo.setStyleSheet("QPushButton{background-color: '#C0C8DB';  border: 2px #C0C8DB;" "border-radius: 10px;}")
@@ -226,7 +225,7 @@ class guii(QMainWindow):
 
     def addInfo(gui):
         def translate(text):
-            gui.translate.setIcon(QIcon("media/loading.ico"))
+            gui.translate.setIcon(QIcon(getPath("data/media/loading.ico")))
             from googletrans import Translator
             from textblob import TextBlob
             import threading
@@ -242,7 +241,7 @@ class guii(QMainWindow):
                         gui.desEdit.setText(pr.text)
                     else:
                         gui.desEdit.setText("Error")
-                    gui.translate.setIcon(QIcon("media/translate.ico"))
+                    gui.translate.setIcon(QIcon(getPath("data/media/translate.ico")))
                 except:
                     potok()
 
@@ -265,9 +264,9 @@ class guii(QMainWindow):
             gui.frame_Add.setStyleSheet("QWidget {background-color: grey;  border: 0px grey;" "border-radius: 10px;}")
             gui.addBlock.addWidget(gui.nameEdit)
             gui.addBlock.addWidget(gui.desEdit)
-            gui.more = QPushButton(QIcon("media/edit.ico"), "")
-            gui.send = QPushButton(QIcon("media/send.ico"), "")
-            gui.translate = QPushButton(QIcon("media/translate.ico"), "")
+            gui.more = QPushButton(QIcon(getPath("data/media/edit.ico")), "")
+            gui.send = QPushButton(QIcon(getPath("data/media/send.ico")), "")
+            gui.translate = QPushButton(QIcon(getPath("data/media/translate.ico")), "")
             gui.more.setStyleSheet("background-color: white; border: 1px white;")
             gui.send.setStyleSheet("background-color: white; border: 1px white;")
             gui.translate.setStyleSheet("background-color: white; border: 1px white;")
@@ -314,11 +313,11 @@ class guii(QMainWindow):
             "QTextEdit {background-color: '#DEDEDE';  border: 2px solid grey;" "border-radius: 7px;}")
         gui.nameMore.setText(gui.nameEdit.text())
         gui.desMore.setText(gui.desEdit.text())
-        gui.okey = QPushButton(QIcon("media/ok.ico"), "")
-        gui.cansel = QPushButton(QIcon("media/cansel.ico"), "")
-        gui.noteBut = QPushButton(QIcon("media/note.png"), "V")
-        gui.codeBut = QPushButton(QIcon("media/code.png"), "")
-        gui.pasteBut = QPushButton(QIcon("media/pastee.ico"), "")
+        gui.okey = QPushButton(QIcon(getPath("data/media/ok.ico")), "")
+        gui.cansel = QPushButton(QIcon(getPath("data/media/cansel.ico")), "")
+        gui.noteBut = QPushButton(QIcon(getPath("data/media/note.png")), "V")
+        gui.codeBut = QPushButton(QIcon(getPath("data/media/code.png")), "")
+        gui.pasteBut = QPushButton(QIcon(getPath("data/media/pastee.ico")), "")
         gui.okey.setStyleSheet(styleButs_MoreInfo)
         gui.cansel.setStyleSheet(styleButs_MoreInfo)
         gui.noteBut.setStyleSheet(styleButs_MoreInfo)
@@ -416,7 +415,7 @@ class guii(QMainWindow):
     def infoPost(gui, int):
         def playCode(text):
             import subprocess, os, platform
-            filepath = "output/start.py"
+            filepath = "data/output/start.py"
             handle = open(filepath, "w")
             handle.write(text)
             handle.close()
@@ -455,16 +454,16 @@ class guii(QMainWindow):
             threading.Thread(target=hide).start()
 
         int = gui.noteListItems.currentRow()
-        cansel = QPushButton(QIcon("media/cansel.ico"), "")
+        cansel = QPushButton(QIcon(getPath("data/media/cansel.ico")), "")
         cansel.setStyleSheet(styleButs_InfoPost)
         cansel.clicked.connect(gui.start)
-        gui.delite = QPushButton(QIcon("media/delite.svg"), "")
+        gui.delite = QPushButton(QIcon(getPath("data/media/delite.svg")), "")
         gui.delite.setStyleSheet(styleButs_InfoPost)
         gui.delite.clicked.connect(lambda: deliteList(gui.data, int))
-        gui.copy = QPushButton(QIcon("media/pastee.ico"), "")
+        gui.copy = QPushButton(QIcon(getPath("data/media/pastee.ico")), "")
         gui.copy.setStyleSheet(styleButs_InfoPost)
         gui.copy.clicked.connect(lambda: copyBuf(info[1]))
-        gui.play = QPushButton(QIcon("media/play.png"), "")
+        gui.play = QPushButton(QIcon(getPath("data/media/play.png")), "")
         gui.play.setStyleSheet(styleButs_InfoPost)
         gui.play.clicked.connect(lambda: playCode(info[1]))
         preBody = QFrame()
@@ -529,9 +528,9 @@ class guii(QMainWindow):
         buttons = QHBoxLayout()
         gui.login.setPlaceholderText(u'Login/Email')
         gui.password.setPlaceholderText(u'password')
-        ok = QPushButton(QIcon("media/ok.ico"), "Login")
-        cansel = QPushButton(QIcon("media/cansel.ico"), "")
-        logo = QPushButton(QIcon("media/fire.ico"), "")
+        ok = QPushButton(QIcon(getPath("data/media/ok.ico")), "Login")
+        cansel = QPushButton(QIcon(getPath("data/media/cansel.ico")), "")
+        logo = QPushButton(QIcon(getPath("data/media/fire.ico")), "")
         ok.setFixedWidth(100)
         gui.password.setEchoMode(QLineEdit.Password)
         logo.setStyleSheet("QPushButton{background-color: '#318CE7';  border: 0px #318CE7;" "border-radius: 0px;}")
